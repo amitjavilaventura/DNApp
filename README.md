@@ -26,5 +26,5 @@ Note that not all words can be converted to DNA, since there are some letters th
 
 
 <br><br><br><br><br><br><br><br><br>
-<center><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"> <img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">vCreative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</center>
+
+<center><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"> <img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</center>
