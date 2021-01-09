@@ -1,3 +1,6 @@
+# ======================== #
+#   sNAP+ user interface   #
+# ======================== #
 
 dnapp_body_snap_about <-
 tabItem(tabName = "snap_about", 

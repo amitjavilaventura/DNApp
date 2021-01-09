@@ -1,5 +1,9 @@
+# ======================== #
+#   DNAme user interface   #
+# ======================== #
 
-
+############
+# UI ABOUT #
 
 dnapp_body_dname_about <- tabItem(tabName = "dname_about",
                                   HTML('<p style="font-size:30px;font-family:Helvetica;color:black;"><u>Welcome to DNAme!</u></p>'),
@@ -76,22 +80,33 @@ dnapp_body_dname_about <- tabItem(tabName = "dname_about",
 
 
 
+##########
+# UI APP #
+
 dnapp_body_dname_app  <- tabItem("dname_app",
                                  splitLayout(cellWidths = c("30%", "70%"),
                                     column(width = 12,
                                       box(title = tagList(icon("dna"), "DNA your name"), width = 12, solidHeader = T,
-                                          textInput(inputId = "name", label = "Write your name", value = "DNAme"),
-                                          actionButton(inputId = "submit", label = "DNAme")),
+                                          textInput(inputId = "dna_name", label = "Write your name", value = "DNAme"),
+                                          actionButton(inputId = "submit_dname", label = "DNAme")),
                                       box(title = tagList(icon("gear"), "Parameters"), width = 12, collapsible = T, collapsed = T,
                                           selectInput(inputId = "nucleicacid", label = "Select the nucleic acid:", choices = c("DNA", "mRNA"), selected = "DNA", selectize = T),
                                           selectInput(inputId = "codon_usage", label = "Select an organism:", selected = "Human", choices = list("Human" = "Human", "Mouse" = "Mouse","C. elegans" = "Celegans", "A. thaliana" = "Athaliana", "E. coli" = "Ecoli")),
-                                          textInput(inputId = "separator", label = "Write a separator:", value = "-"))),
+                                          textInput(inputId = "separator", label = "Write a separator:", value = ""))),
                                     
-                                  conditionalPanel(condition = "input.submit > 0",
-                                          h4("This is your DNA name!"),
-                                          tags$div(HTML(paste(tags$span(style="color:blue", textOutput(outputId = "name"))))),
-                                          tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:30px", textOutput("text_output"))))),
-                                          br(),br(),
-                                          h4("Information"),
-                                          helpText("This is all the information in the letters of your name."),
-                                          tableOutput(outputId = "table_output"))))
+                                  conditionalPanel(condition = "input.submit_dname > 0",
+                                          h4("Input name:"),
+                                          tags$div(HTML(paste(tags$span(style="color:blue; font-size:20px; font-family:courier;", textOutput(outputId = "name"))))),
+                                          br(),
+                                          h4("DNA name:"),
+                                          tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:30px; font-family:courier;", 
+                                                                        textOutput("text_output"))))),
+                                          br(),
+                                          conditionalPanel(condition = "input.nucleicacid == 'DNA'",
+                                                           h4("dsDNA name:"),
+                                                           tags$div(tableOutput("dsDNA_name"), style = "font-family:courier; font-size:25px"),
+                                                           br()),
+                                          h4("Information:"),
+                                          tableOutput("table_output"))))
+
+

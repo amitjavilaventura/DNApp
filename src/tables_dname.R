@@ -32,4 +32,10 @@ rna_codon_aa <- data.frame(one_letter = c("A", "C", "D", "E", "F", "G", "H", "I"
                                            "AAU", "CCU", "CAA", "AGA", "UCU", "ACU", "GUU", "UGG", "UAU", "  "), 
                            Ecoli       = c("GCG", "UGC", "GAU", "GAA", "UUU", "GGC", "CAU", "AUU", "AAA", "CUG", "AUG",
                                            "AAC", "CCG", "CAG", "CGU", "AGC", "ACC", "GUG", "UGG", "UAU", "  "),
+                           
+                           
+
+  
+  
+  
                            stringsAsFactors = F)

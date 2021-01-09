@@ -36,7 +36,7 @@ is.letter.normal <- function(input){
 
 # ----- is.aa.letter ----- # 
 # function to check if all letters in input have an associated amino acid
-is.aa.letter <- function(input){
+is.not.aa <- function(input){
   
   library(dplyr)
   
@@ -46,11 +46,35 @@ is.aa.letter <- function(input){
   return(check.aa.letter)
 }
 
+# ----- Get complementary sequence ----- # 
+# function to make the complementary sequence of an input
+dna_complementary <- function(input, sep=""){
+  
+  query <- str_to_upper(input) %>% str_split(pattern = "") %>% unlist()
+  complement <- character(length = length(query))
+
+  for(i in 1:length(query)){
+      complement[i] <- if_else(str_detect(query[i], "A"), "T",
+                               if_else(str_detect(query[i], "G"), "C",
+                                       if_else(str_detect(query[i], "T"), "A",
+                                               if_else(str_detect(query[i], "C"), "G", " ")))) 
+  }
+  
+  ds_name <- data_frame(`5' -> 3'` = paste(query, collapse = sep),
+                        `3' <- 5'` = paste(complement, collapse = sep)) %>% 
+    t() %>% 
+    as.data.frame() %>%
+    set_colnames(c(" "))
+  
+  return(ds_name)
+  
+}
+
 
 # ----- Convert Name to DNA ----- #
-name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human", sep = "-"){
+name2dna <- function(input="DNAme", nucleic_acid = "DNA", table = dna_codon_aa, codon_usage = "Human", sep = "-"){
   
-  #library(Biostrings)
+  library(Biostrings)
   library(stringr)
   library(dplyr)
   library(magrittr)
@@ -68,7 +92,7 @@ name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human
   else{
     
     # if there are not allowed letters --> stop
-    if(TRUE %in% is.aa.letter(input)){
+    if(TRUE %in% is.not.aa(input)){
       
       message <- paste("One of the letters in", input, "does not have an associated amminoacid.")
       return(message)
@@ -92,11 +116,15 @@ name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human
       
       DNAme$name <- paste((dna_name %>% select(codon_usage))[1:length(name),1], collapse = sep)
       
+      if(nucleic_acid == "DNA"){
+        DNAme$ds_name <- dna_complementary(paste((dna_name %>% select(codon_usage))[1:length(name),1], collapse = ""), sep = "")
+      }
+      
       # return list
       return(DNAme)
       }
-
   }
   
 }
+
 
