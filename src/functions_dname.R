@@ -50,6 +50,10 @@ is.not.aa <- function(input){
 # function to make the complementary sequence of an input
 dna_complementary <- function(input, sep=""){
   
+  library(stringr)
+  library(dplyr)
+  library(magrittr)
+  
   query <- str_to_upper(input) %>% str_split(pattern = "") %>% unlist()
   complement <- character(length = length(query))
 
@@ -74,7 +78,6 @@ dna_complementary <- function(input, sep=""){
 # ----- Convert Name to DNA ----- #
 name2dna <- function(input="DNAme", nucleic_acid = "DNA", table = dna_codon_aa, codon_usage = "Human", sep = "-"){
   
-  library(Biostrings)
   library(stringr)
   library(dplyr)
   library(magrittr)
