@@ -2,6 +2,9 @@
 #   sNAP+ server function   #
 # ========================= #
 
+# load packages
+library(tibble)
+
 # ----- sNAP stats -----
 snap_stats <- function(input, output, session, query){
   

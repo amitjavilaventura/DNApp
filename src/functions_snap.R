@@ -133,8 +133,8 @@ dna2prot <- function(input, start = 1, code = "standard", nucleotide = "DNA"){
   out <- tibble(input   = input,
                 codon   = codon_list,
                 aa_name = paste(aa_seq$aminoacid, collapse = " - "), 
-                aa_3l   = paste(aa_seq$three_letter, collapse = " - "),
-                aa_1l   = paste(aa_seq$one_letter, collapse = " ")) %>% t() %>% as_tibble() %>% 
+                aa_3l   = paste(aa_seq$three_letter, collapse = "-"),
+                aa_1l   = paste(aa_seq$one_letter, collapse = "")) %>% t() %>% as_tibble() %>% 
       set_colnames("Sequence") %>%
       mutate(Name = c("Input", "Codon", "Aminoacid name",  "3-letter code", "1-letter code")) %>%
       select(Name, Sequence)
