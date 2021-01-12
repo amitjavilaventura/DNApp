@@ -2,11 +2,9 @@
 #   sNAP+ server function   #
 # ========================= #
 
-# load packages
-library(tibble)
 
 # ----- sNAP stats -----
-snap_stats <- function(input, output, session, query){
+snap_stats <- function(input, output, session){
   
   observeEvent(input$show_stats, {
     output$stats_table <- renderTable({ 
@@ -18,7 +16,7 @@ snap_stats <- function(input, output, session, query){
 }
 
 # ----- sNAP conversion -----
-snap_conversion <- function(input, output, session, query){
+snap_conversion <- function(input, output, session){
   
   observeEvent(input$do_conversion, {
     output$conversion_table <- renderTable({ 
@@ -29,7 +27,7 @@ snap_conversion <- function(input, output, session, query){
 }
 
 # ----- sNAP dna2prot -----
-snap_dna2prot <- function(input, output, session, query){
+snap_dna2prot <- function(input, output, session){
   
   observeEvent(input$do_dna2prot, {
     output$dna2prot_table <- renderTable({ 
