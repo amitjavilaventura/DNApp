@@ -22,6 +22,7 @@ source("src/functions_dnainspect.R")
 # codon usage tables
 source("src/tables_dname.R")
 source("src/tables_snap.R")
+source("src/tables_dnainspect.R")
 
 ### ----- load ui and server files -----
 source("src/app_ui.R")

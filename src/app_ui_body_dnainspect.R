@@ -44,28 +44,29 @@ dnapp_body_dnainspect_app <-
                              box(title = tagList(icon("calculator"), " Stats. params."), width = 12, collapsible = T, collapsed = T,
                                  actionButton(inputId = "inspect_stats", label = "Show stats")),
                              box(title = tagList(icon("equals"), " Match params."), width = 12, collapsible = T, collapsed = T,
-                                 actionButton(inputId = "inspect_match", label = "Search matches")),
+                                 textInput(inputId = "match_text", label = "Write a pattern to search:", width = "100%"),
+                                 actionButton(inputId = "inspect_match", label = "Search patterns")),
                              box(title = tagList(icon("exchange-alt"), " Palindrome params."), width = 12, collapsible = T, collapsed = T,
                                  actionButton(inputId = "inspect_palindrome", label = "Search palindromes")),
                              #box(title = tagList(icon("cut"), "Restriction params."), width = 12, collapsible = T, collapsed = F,
                              #    actionButton(inputId = "inspect_restriction", label = "Search restriction targets")),
                              box(title = tagList(icon("dice-three"), " Codons prams."), width = 12, collapsible = T, collapsed = T,
+                                 selectInput(inputId = "inspect_search_codon", 
+                                             label = "Select the aminoacid to look at its codons:", 
+                                             choices = codons$aa_3l, multiple = F, width = "100%"),
                                  actionButton(inputId = "inspect_codons", label = "Search codons"))),
                       
                       column(width = 12,
                              box(title = tagList(icon("calculator"), " Statistics"), width = 12, collapsible = T, collapsed = F,
                                  tags$div(tableOutput(outputId = "inspect_stats"), style = "font-family:courier;")),
-                             box(title = tagList(icon("equals"), " Matches"), width = 12, collapsible = T, collapsed = F),
+                             box(title = tagList(icon("equals"), " Matches"), width = 12, collapsible = T, collapsed = F,
+                                 tags$div(tableOutput(outputId = "inspect_match"), style = "font-family:courier;")),
                              box(title = tagList(icon("exchange-alt"), " Palindromes"), width = 12, collapsible = T, collapsed = F,
                                  tags$div(tableOutput(outputId = "inspect_palindrome"), style = "font-family:courier;")),
                              #box(title = tagList(icon("cut"), "Restriction targets"),  width = 12, collapsible = T, collapsed = F),
                              box(title = tagList(icon("dice-three"), " Codons"), width = 12, collapsible = T, collapsed = F,
-                                 tabsetPanel(
-                                   tabPanel(title = "Start", value = "start_codon", 
-                                            tags$div(tableOutput(outputId = "inspect_start_codon"), style = "font-family:courier;")),
-                                   tabPanel(title = "Stop", value = "stop_codon"),
-                                   tabPanel(title = "Other", value = "other_codon")
-                                 )))))
+                                 tags$div(tableOutput(outputId = "inspect_search_codon"), style = "font-family:courier;"))
+                             )))
 
 
 
